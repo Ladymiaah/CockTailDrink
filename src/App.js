@@ -1,10 +1,13 @@
 import {useState, useCallback, useEffect} from 'react';
 import './App.css';
 import axios from 'axios';
+import ImageLink from './ImageLink'
 
 function App() {
+    <ImageLink/>
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([])
+  
 
   const url ='https://www.thecocktaildb.com/api/json/v1/1/random.php';
     const fetchCocktailHandler = useCallback(()=>{
@@ -28,12 +31,14 @@ function App() {
   return (
     <div className="App">
        {data.map ((cocktail)=>{
+        return(
         <div key={cocktail.idDrink}className="cocktail-container">
           <h2>{cocktail.strDrink}</h2>
           <img src={cocktail.strDrinkThumb} alt="#"/>
           <button onClick={fetchCocktailHandler}>Get another cocktail</button>
 
         </div>
+        )
       })}
     </div>
   );
